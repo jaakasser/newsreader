@@ -1,0 +1,11 @@
+{
+  "name": "stagnation_lab",
+  "version": "1.0.0",
+  "description": "News Reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jaak Asser",
+  "license": "ISC"
+}
