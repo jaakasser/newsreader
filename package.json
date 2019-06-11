@@ -4,7 +4,8 @@
   "description": "News Reader",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install && WEBPACK_ENV=production webpack --mode production"
   },
   "author": "Jaak Asser",
   "license": "ISC",
@@ -12,10 +13,10 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^9.6.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
-    "babel-preset-es2015": "^6.24.1",
     "css-loader": "^3.0.0",
     "eslint": "^5.16.0",
     "file-loader": "^4.0.0",
