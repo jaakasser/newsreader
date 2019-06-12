@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="navigate()">
         <h4>{{ title }}</h4>
         <p>News item</p>
         <p>ID: {{ id }}</p>
@@ -7,6 +7,8 @@
 </template>
 
 <script>
+    import router from '../router';
+
     const props = {
         id: {
             type: String,
@@ -24,6 +26,17 @@
         
         data () {
             return {}
+        },
+
+        methods: {
+            navigate() {
+                router.push({
+                    name: "NewsDetail",
+                    params: {
+                        id: this.id
+                    }
+                });
+            }
         }
     }
 </script>

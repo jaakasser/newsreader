@@ -1,21 +1,15 @@
 <template>
     <div>
         <p>News Reader</p>
-        <news-list></news-list>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import NewsList from './components/NewsList.vue';
-
     export default {
         data() {
             return {}
         },
-
-        components: {
-            'news-list': NewsList
-        }
     }
 </script>
 
