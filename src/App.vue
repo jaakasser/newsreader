@@ -1,15 +1,22 @@
 <template>
     <div>
         <p>News Reader</p>
+        <news-list></news-list>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {}
+    import NewsList from './components/NewsList.vue';
+
+    export default {
+        data() {
+            return {}
+        },
+
+        components: {
+            'news-list': NewsList
+        }
     }
-}
 </script>
 
 <style>

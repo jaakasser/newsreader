@@ -10,11 +10,14 @@
   "author": "Jaak Asser",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
