@@ -3,8 +3,7 @@ import NewsList from '../components/NewsList.vue';
 import NewsDetail from '../components/NewsDetail.vue';
 import NotFoundPage from '../components/NotFoundPage.vue';
 
-
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         {
             path: '/',
@@ -23,4 +22,6 @@ export default new VueRouter({
             component: NotFoundPage
         }
     ]
-})
+});
+
+export default router;

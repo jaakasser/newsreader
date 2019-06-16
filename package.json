@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "WEBPACK_ENV=dev webpack --mode development --progress --colors --watch",
     "build": "npm install && WEBPACK_ENV=production webpack --mode production"
   },
   "author": "Jaak Asser",

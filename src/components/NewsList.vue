@@ -52,13 +52,12 @@
 
             infinite () {
                 window.onscroll = () => {
-                let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+                    let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
-                if (bottomOfWindow) {
-                    console.log("BOTTOM");
-                    this.page++;
-                    this.getNewsList();
-                }
+                    if (bottomOfWindow) {
+                        this.page++;
+                        this.getNewsList();
+                    }
                 };
             }
         },
