@@ -48,6 +48,11 @@
                         }`
                 });
                 this.newsItem = res.data.data.newsItem;
+                if (this.newsItem == null) {
+                    router.push({
+                        name: '404'
+                    })
+                }
             },
 
             goBack() {

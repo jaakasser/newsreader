@@ -31,7 +31,7 @@
         methods: {
             navigate() {
                 router.push({
-                    name: "NewsDetail",
+                    name: 'NewsDetail',
                     params: {
                         id: this.id
                     }
