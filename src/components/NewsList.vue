@@ -8,9 +8,9 @@
 
 <script>
     import NewsItem from './NewsItem.vue';
-    import axios from 'axios';
+    import api from '../api';
 
-    const props = {}
+    const props = {};
 
     export default {
         name: 'news-list',
@@ -23,30 +23,33 @@
             return {
                 news: [],
                 page: 0,
-                newsPerPage: 5
+                newsPerPage: 5,
+                cacheName: 'news-list-cache'
             }
         },
 
         computed: {
             skipNews () {
                 return this.page * this.newsPerPage;
+            },
+
+            query () {
+                return `{
+                    newsList(skip: ${this.skipNews}, limit: ${this.newsPerPage}) {
+                        totalRows,
+                        rows {
+                            id,
+                            title
+                        }
+                    }
+                }`;
             }
         },
 
         methods: {
             async getNewsList () {
-                const res = await axios.post(
-                    'https://news-reader.stagnationlab.dev/graphql', {
-                        query: `{
-                            newsList(skip: ${this.skipNews}, limit: ${this.newsPerPage}) {
-                                totalRows,
-                                rows {
-                                    id,
-                                    title
-                                }
-                            }
-                        }`
-                });
+                const query = this.query;
+                const res = await api.post("/", { query });
                 this.news.push(...res.data.data.newsList.rows);
             },
 

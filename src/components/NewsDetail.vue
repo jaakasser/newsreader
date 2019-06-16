@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from '../api';
     import router from '../router';
 
     const props = {
@@ -30,25 +30,28 @@
         },
 
         computed: {
-            img() {
+            img () {
                 return this.newsItem.img;
+            },
+
+            query () {
+                return `{
+                    newsItem(id: "${this.id}") {
+                        title,
+                        img,
+                        content,
+                        url
+                    }
+                }`
             }
         },
 
         methods: {
             async getNewsDetail() {
-                const res = await axios.post(
-                    'https://news-reader.stagnationlab.dev/graphql', {
-                        query: `{
-                            newsItem(id: "${this.id}") {
-                                title,
-                                img,
-                                content,
-                                url
-                            }
-                        }`
-                });
+                const query = this.query;
+                const res = await api.post('/', { query });
                 this.newsItem = res.data.data.newsItem;
+
                 if (this.newsItem == null) {
                     router.push({
                         name: '404'
