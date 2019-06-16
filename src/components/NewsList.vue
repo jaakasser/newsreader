@@ -24,7 +24,7 @@
                 news: [],
                 page: 0,
                 newsPerPage: 5,
-                cacheName: 'news-list-cache'
+                cacheAgeInMs: 60000 * 60 // 1 hour
             }
         },
 
@@ -48,9 +48,34 @@
 
         methods: {
             async getNewsList () {
+                this.checkCacheAge();
                 const query = this.query;
-                const res = await api.post("/", { query });
-                this.news.push(...res.data.data.newsList.rows);
+                if (window.localStorage.getItem(JSON.stringify(query)) != null) {
+                    this.fromCache();
+                } else {
+                    const res = await api.post("/", { query });
+                    this.news.push(...res.data.data.newsList.rows);
+                    this.updateCache();
+                }
+            },
+
+            fromCache () {
+                this.news = JSON.parse(window.localStorage.getItem(JSON.stringify(this.query)));
+            },
+
+            updateCache () {
+                window.localStorage.setItem(JSON.stringify(this.query), JSON.stringify(this.news));
+                window.localStorage.setItem('newest', new Date().getTime());
+                console.log(window.localStorage.getItem('newest'));
+            },
+
+            checkCacheAge () {
+                const newest = window.localStorage.getItem('newest');
+                const isNotEmpty = newest != null;
+                const isTooOld = (newest - new Date().getTime) > this.cacheAgeInMs;
+                if (isNotEmpty && isTooOld) {
+                    window.localStorage.clear();
+                }
             },
 
             infinite () {
@@ -60,6 +85,7 @@
                     if (bottomOfWindow) {
                         this.page++;
                         this.getNewsList();
+                        this.updateCache();
                     }
                 };
             }
