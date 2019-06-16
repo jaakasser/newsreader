@@ -4,6 +4,7 @@
         <h4>{{ newsItem.title }}</h4>
         <img :src="img" alt="">
         <p>{{ newsItem.content }}</p>
+        <p>Original story: </p><a :href="newsItem.url" target="_blank">{{ newsItem.url }}</a>
     </div>
 </template>
 
