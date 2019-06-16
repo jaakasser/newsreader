@@ -21,7 +21,15 @@
 
         data () {
             return {
-                news: []
+                news: [],
+                page: 0,
+                newsPerPage: 5
+            }
+        },
+
+        computed: {
+            skipNews () {
+                return this.page * this.newsPerPage;
             }
         },
 
@@ -30,7 +38,7 @@
                 const res = await axios.post(
                     'https://news-reader.stagnationlab.dev/graphql', {
                         query: `{
-                            newsList(skip: 0, limit: 20) {
+                            newsList(skip: ${this.skipNews}, limit: ${this.newsPerPage}) {
                                 totalRows,
                                 rows {
                                     id,
@@ -39,12 +47,25 @@
                             }
                         }`
                 });
-                this.news = res.data.data.newsList.rows;
+                this.news.push(...res.data.data.newsList.rows);
+            },
+
+            infinite () {
+                window.onscroll = () => {
+                let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+                if (bottomOfWindow) {
+                    console.log("BOTTOM");
+                    this.page++;
+                    this.getNewsList();
+                }
+                };
             }
         },
 
         mounted () {
             this.getNewsList();
+            this.infinite()
         }
     }
 </script>
