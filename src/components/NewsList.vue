@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="news-list">
     <div v-for="(item, index) in news" :key="index">
-        <news-item :id="item.id" :title="item.title"></news-item>
+        <news-item v-bind="item"></news-item>
     </div>
   </div>
 </template>
@@ -39,7 +39,8 @@
                         totalRows,
                         rows {
                             id,
-                            title
+                            title,
+                            img
                         }
                     }
                 }`;
@@ -97,3 +98,10 @@
         }
     }
 </script>
+
+<style>
+    .news-list {
+        max-width: 700px;
+        margin: auto;
+    }
+</style>

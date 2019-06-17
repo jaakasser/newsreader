@@ -1,10 +1,13 @@
 <template>
-    <div>
-        <button @click="goBack()">Back</button>
-        <h4>{{ newsItem.title }}</h4>
-        <img :src="img" alt="">
-        <p>{{ newsItem.content }}</p>
-        <p>Original story: </p><a :href="newsItem.url" target="_blank">{{ newsItem.url }}</a>
+    <div class="news-detail">
+        <div class="img">
+            <img :src="img" alt="">
+        </div>
+        <div class="body">
+            <h3>{{ newsItem.title }}</h3>
+            <p class="content">{{ newsItem.content }}</p>
+            <p class="source">Source: </p><a :href="newsItem.url" target="_blank">{{ newsItem.url }}</a>
+        </div>
     </div>
 </template>
 
@@ -57,10 +60,6 @@
                         name: '404'
                     })
                 }
-            },
-
-            goBack() {
-                router.push({name: 'NewsList'});
             }
         },
 
@@ -69,3 +68,33 @@
         }
     }
 </script>
+
+<style>
+    .news-detail {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .news-detail .body {
+        padding: 5px;
+    }
+
+    .news-detail .img {
+        padding: 0;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .news-detail .img img {
+        max-width: 100%;
+    }
+
+    .news-detail .content {
+        color: grey;
+    }
+
+    .news-detail .source {
+        font-size: 0.8em;
+        color: gray;
+    }
+</style>

@@ -1,8 +1,9 @@
 <template>
-    <div @click="navigate()">
-        <h4>{{ title }}</h4>
-        <p>News item</p>
-        <p>ID: {{ id }}</p>
+    <div class="news-item-container">
+        <div @click="navigate()" class="news-item-img">
+            <img :src="img" alt="">
+        </div>
+        <div class="news-item-heading">{{ title }}</div>
     </div>
 </template>
 
@@ -15,6 +16,10 @@
             default: ''
         },
         title: {
+            type: String,
+            default: ''
+        },
+        img: {
             type: String,
             default: ''
         }
@@ -40,3 +45,44 @@
         }
     }
 </script>
+
+<style>
+    .news-item-container {
+        /* margin: 5px 5px; */
+        /* background-color: whitesmoke; */
+    }
+
+    .news-item-container .news-item-heading {
+        padding-top: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        margin: 0;
+    }
+
+    .news-item-img {
+        height: 200px;
+        overflow: hidden;
+        position:relative;
+        display:inline-block;
+    }
+
+    .news-item-img:after {
+        content:'';
+        position:absolute;
+        left:0; top:0;
+        width:100%; height:100%;
+        display:inline-block;
+        background: -moz-linear-gradient(top, rgba(0,47,75,0.5) 0%, rgba(220, 66, 37, 0.5) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(220, 66, 37, 0.5)), color-stop(100%,rgba(0,47,75,0.5))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, rgba(0,47,75,0.5) 0%,rgba(220, 66, 37, 0.5) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, rgba(0,47,75,0.5) 0%,rgba(220, 66, 37, 0.5) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, rgba(0,47,75,0.5) 0%,rgba(220, 66, 37, 0.5) 100%); /* IE10+ */
+        background: linear-gradient(to bottom, rgba(0,47,75,0.5) 0%,rgba(220, 66, 37, 0.5) 100%); /* W3C */
+    }
+
+    .news-item-img img {
+        max-width: 100%;
+        display: block;
+    }
+</style>
