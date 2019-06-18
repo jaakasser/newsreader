@@ -65,8 +65,9 @@
             },
 
             updateCache () {
-                window.localStorage.setItem(JSON.stringify(this.query), JSON.stringify(this.news));
-                window.localStorage.setItem('newest', new Date().getTime());
+                const lastQuery = JSON.stringify(this.query);
+                window.localStorage.setItem(lastQuery, JSON.stringify(this.news));
+                window.localStorage.setItem('newest', new Date().getTime()); 
             },
 
             checkCacheAge () {
