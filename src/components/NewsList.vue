@@ -67,7 +67,6 @@
             updateCache () {
                 window.localStorage.setItem(JSON.stringify(this.query), JSON.stringify(this.news));
                 window.localStorage.setItem('newest', new Date().getTime());
-                console.log(window.localStorage.getItem('newest'));
             },
 
             checkCacheAge () {
@@ -81,9 +80,11 @@
 
             infinite () {
                 window.onscroll = () => {
-                    let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+                    let pageHeight = document.documentElement.offsetHeight;
+                    let windowHeight = window.innerHeight;
+                    let scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
 
-                    if (bottomOfWindow) {
+                    if (pageHeight <= windowHeight + scrollPosition) {
                         this.page++;
                         this.getNewsList();
                         this.updateCache();
