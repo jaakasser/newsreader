@@ -1,6 +1,6 @@
 <template>
-    <div class="news-item-container">
-        <div @click="navigate()" class="news-item-img">
+    <div class="news-item-container" @click="navigate()">
+        <div class="news-item-img">
             <img :src="img" alt="">
         </div>
         <div class="news-item-heading">{{ title }}</div>
@@ -48,16 +48,17 @@
 
 <style>
     .news-item-container {
-        /* margin: 5px 5px; */
+        margin: 15px 5px;
+        -webkit-box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
+        box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
         /* background-color: whitesmoke; */
     }
 
     .news-item-container .news-item-heading {
-        padding-top: 2px;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 5px;
+        padding: 7px;
         margin: 0;
+        font-size: 1.2em;
     }
 
     .news-item-img {

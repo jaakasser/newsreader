@@ -72,7 +72,10 @@
 <style>
     .news-detail {
         max-width: 700px;
-        margin: auto;
+        margin: 10px auto;
+        -webkit-box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
+        box-shadow: 0px 5px 14px -1px rgba(0,0,0,0.75);
     }
 
     .news-detail .body {
