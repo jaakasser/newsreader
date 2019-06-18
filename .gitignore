@@ -12,3 +12,4 @@ Thumbs.db
 
 # Application specific #
 node_modules/
+build/
